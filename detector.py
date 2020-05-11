@@ -11,37 +11,54 @@ form = cgi.FieldStorage()
 
 # Get data from fields
 
+data_entered = []
+
 name = form.getvalue('name')
 email = form.getvalue('email')
 age = int(form.getvalue('age'))      #numeric age
  
+gender = int(form.getvalue('gender'))
+
+data_entered.append(gender)
+
 fever = form.getvalue('fever')     #string : normal , fever , high
-
-
-if form.getvalue('weakness') :
-	weakness = 1
-else :
-	weakness = 0
 
 if form.getvalue('dry_cough') :
 	dry_cough = 1
 else :
 	dry_cough = 0
 
+data_entered.append(dry_cough)
+
 if form.getvalue('sore_throat') :
 	sore_throat = 1
 else :
 	sore_throat = 0
+
+data_entered.append()
+
+if form.getvalue('weakness') :
+	weakness = 1
+else :
+	weakness = 0
+
+data_entered.append(weakness)
+
+if form.getvalue('breathing_problems') :
+	breathing_problems = 1
+else :
+	breathing_problems = 0
+
+data_entered.append(breathing_problems)
 
 if form.getvalue('drowsiness') :
 	drowsiness = 1
 else :
 	drowsiness = 0
 
-if form.getvalue('breathing_problems') :
-	breathing_problems = 1
-else :
-	breathing_problems = 0
+data_entered.append(drowsiness)
+
+
 
 if form.getvalue('chest_pain') :
 	chest_pain = 1
@@ -94,8 +111,9 @@ travel_history = int(form.getvalue('travel_history'))
 
 
 
-print(name,' ',email,' ',age,' ',
-	fever, ' ' ,
-	weakness , ' ' , dry_cough , ' ' , sore_throat , ' ' , drowsiness , ' ' , breathing_problems , ' ' , chest_pain , ' ' , loss_sense_smell , ' ' , appetide_change , ' ' , progressed , ' ' ,
-	kidney_disease , ' ' ,heart_disease , ' ' , lung_disease , ' ' , diabetes , ' ' , high_blood_pressure , ' ' , stroke , ' ' , 
+print(name,' ',email,' ',age,'\n',
+	fever, '\n' ,
+	weakness , ' ' , dry_cough , ' ' , sore_throat , ' ' , drowsiness , ' ' , breathing_problems , ' ' , chest_pain , ' ' , loss_sense_smell , ' ' , appetide_change , '\n ' ,
+ progressed , '\n' ,
+	kidney_disease , ' ' ,heart_disease , ' ' , lung_disease , ' ' , diabetes , ' ' , high_blood_pressure , ' ' , stroke , '\n' , 
 	travel_history)
