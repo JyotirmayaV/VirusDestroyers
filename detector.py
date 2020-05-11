@@ -19,7 +19,6 @@ age = int(form.getvalue('age'))      #numeric age
  
 gender = int(form.getvalue('gender'))
 
-data_entered.append(gender)
 
 fever = form.getvalue('fever')     #string : normal , fever , high
 
@@ -28,42 +27,37 @@ if form.getvalue('dry_cough') :
 else :
 	dry_cough = 0
 
-data_entered.append(dry_cough)
 
 if form.getvalue('sore_throat') :
 	sore_throat = 1
 else :
 	sore_throat = 0
 
-data_entered.append()
 
 if form.getvalue('weakness') :
 	weakness = 1
 else :
 	weakness = 0
 
-data_entered.append(weakness)
 
 if form.getvalue('breathing_problems') :
 	breathing_problems = 1
 else :
 	breathing_problems = 0
 
-data_entered.append(breathing_problems)
+
 
 if form.getvalue('drowsiness') :
 	drowsiness = 1
 else :
 	drowsiness = 0
 
-data_entered.append(drowsiness)
-
-
 
 if form.getvalue('chest_pain') :
 	chest_pain = 1
 else :
 	chest_pain = 0
+
 
 if form.getvalue('loss_sense_smell') :
 	loss_sense_smell = 1
@@ -110,10 +104,82 @@ else :
 travel_history = int(form.getvalue('travel_history'))
 
 
+data_entered.append(gender)
+data_entered.append(dry_cough)
+data_entered.append(sore_throat)
+data_entered.append(weakness)
+data_entered.append(breathing_problems)
+data_entered.append(drowsiness)
+data_entered.append(chest_pain)
+data_entered.append(travel_history)
+data_entered.append(diabetes)
+data_entered.append(heart_disease)
+data_entered.append(lung_disease)
+data_entered.append(stroke)
+data_entered.append(progressed)
+data_entered.append(high_blood_pressure)
+data_entered.append(kidney_disease)
+data_entered.append(appetide_change)
+data_entered.append(loss_sense_smell)
 
-print(name,' ',email,' ',age,'\n',
-	fever, '\n' ,
-	weakness , ' ' , dry_cough , ' ' , sore_throat , ' ' , drowsiness , ' ' , breathing_problems , ' ' , chest_pain , ' ' , loss_sense_smell , ' ' , appetide_change , '\n ' ,
- progressed , '\n' ,
-	kidney_disease , ' ' ,heart_disease , ' ' , lung_disease , ' ' , diabetes , ' ' , high_blood_pressure , ' ' , stroke , '\n' , 
-	travel_history)
+for i in range(10,100,10):
+	if age >= i and age < i+10:
+		data_entered.append(1)
+	else :
+		data_entered.append(0)
+
+if fever == 'fever':
+	data_entered.append(1)
+else:
+	data_entered.append(0)
+
+if fever == 'high':
+	data_entered.append(1)
+else:
+	data_entered.append(0)
+
+print(data_entered)
+
+print ( 'name :' ,name,
+		'\nemail :',email,
+		'\ngender :',gender,
+		'\ndry_cough :',dry_cough,
+		'\nsore_throat :',sore_throat,
+		'\nweakness :',weakness,
+		'\nbreathing_problems :',breathing_problems,
+		'\ndrowsiness :',drowsiness,
+		'\nchest_pain :',chest_pain,
+		'\ntravel_history :',travel_history,
+		'\ndiabetes :',diabetes,
+		'\nheart_disease :',heart_disease,
+		'\nlung_disease :',lung_disease,
+		'\nstroke :',stroke,
+		'\nprogressed :',progressed,
+		'\nhigh_blood_pressure :',high_blood_pressure,
+		'\nkidney_disease :',kidney_disease,
+		'\nappetide_change :',appetide_change,
+		'\nloss_sense_smell :',loss_sense_smell,
+		'\nage :',age,
+		'\nfever :',fever,
+		'\n[age columns : 10,20,30,40,50,60,70,80,90]',
+		'\n[fever columns : 98.6,102]'
+	)
+
+from keras.models import load_model
+model = load_model('updatemodel99-01.h5')
+m = model.predict([[data_entered]])
+
+print('model predicted this : ',m)
+
+m = list(m[0]) #converted from a 2D array with one row only to a 1D list 
+
+m = m.index(max(m)) #finding the index of the maximum value predicted
+
+print('Class : ',m)
+
+if m == 0 :
+	print('No Risk')
+elif m == 1:
+	print('medium risk')
+else:
+	print('high risk')
