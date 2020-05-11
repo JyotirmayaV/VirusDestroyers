@@ -1,6 +1,7 @@
 <html>
 	<head>
-		<title>COVID Detector</title>
+		<title>COVID-19 Detector</title>
+	
 		<style> 
 
 
@@ -8,14 +9,22 @@ input{
 	
 
 	margin:20px;
-}
+	 }
 
-</style>
+body{background: black;
+	 color: #2ECC40;
+	 font-size: 20px;
+	 font-style: bold;
+	 font-family:sans-serif;
+
+	 }
+
+		</style>
 	</head>
 
 	<body>
 
-		<center><h1>Corona detector from Team VirusDestryers</h1></center>
+		<center><marquee behavior="alternate"><h1>Corona Detector from Team VirusDestroyers</h1></marquee></center>
 		 
 		<form action="detector.py">
 		
@@ -25,9 +34,9 @@ input{
 			
 				<h3>Personal Details</h3>
 			
-				Name : <input type = 'text' name = 'name' required>
-				Email : <input type = 'Email' name = 'email' required>
-				Age : <input type = 'number' name = 'age' required> 
+				Name : <input type = 'text' placeholder="Enter name :" name = 'name' required>
+				Email : <input type = 'Email' placeholder="Enter email : " name = 'email' required>
+				Age : <input type = 'number' placeholder="Enter age : " name = 'age' required> 
 				
 				<br>
 			
@@ -60,7 +69,7 @@ input{
 			<input type = "checkbox" name = "sore_throat" value = "off" /> Sore Throoat
 			<input type = "checkbox" name = "drowsiness" value = "off" /> Drowsiness
 			<input type = "checkbox" name = "breathing_problem" value = "off" /> Breathing Problems
-			<input type = "checkbox" name = "chest_pain" value = "off" /> Pain in chest
+			<input type = "checkbox" name = "chest_pain" value = "off" /> Pain in chest<br>
 			<input type = "checkbox" name = "loss_sense_smell" value = "off" />	Loss of sense of smell
 			<input type = "checkbox" name = "appetide_change" value = "off" /> Change in Appetide
 
