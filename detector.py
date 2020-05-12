@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/root/anaconda3/lib/python3.8
 
 import subprocess as sb
 print ("Content-type:text/html\r\n\r\n")
@@ -11,14 +11,33 @@ form = cgi.FieldStorage()
 
 # Get data from fields
 
-data_entered = []
+print('''<html>
+	<head>
+		<title>Detection Results</title>
+	</head>
+	<body>''')
+print('i came here')
+
+
 
 name = form.getvalue('name')
 email = form.getvalue('email')
-age = int(form.getvalue('age'))      #numeric age
- 
-gender = int(form.getvalue('gender'))
+print('here')
+age = str(form.getvalue('age'))      #numeric age
+print('age : ',age)
+if age == 'None':
+    age = 10
+else:
+    age = int(age)
 
+gender = str(form.getvalue('gender'))
+if gender == 'None':
+    gender = 0
+else:
+    gender = int(gender)
+
+print('i came here basic details')
+data_entered = []
 
 fever = form.getvalue('fever')     #string : normal , fever , high
 
@@ -69,7 +88,14 @@ if form.getvalue('appetide_change') :
 else :
 	appetide_change = 0
 
-progressed = int(form.getvalue('progressed'))   # 1 and 0
+progressed = str(form.getvalue('progressed'))   # 1 and 0
+
+if progressed == 'None':
+    progressed = 0
+else :
+    progressed = int(progressed)
+
+print('i came here symptoms')
 
 if form.getvalue('kidney_disease') :
 	kidney_disease = 1
@@ -101,8 +127,14 @@ if form.getvalue('stroke') :
 else :
 	stroke = 0
 
-travel_history = int(form.getvalue('travel_history'))
+travel_history = str(form.getvalue('travel_history'))
 
+if travel_history == 'None':
+    travel_history = 0
+else :
+    travel_history = int(travel_history)
+
+print('i came here read data begin')
 
 data_entered.append(gender)
 data_entered.append(dry_cough)
@@ -122,11 +154,15 @@ data_entered.append(kidney_disease)
 data_entered.append(appetide_change)
 data_entered.append(loss_sense_smell)
 
+print('i came here read data end')
+
 for i in range(10,100,10):
 	if age >= i and age < i+10:
 		data_entered.append(1)
 	else :
 		data_entered.append(0)
+
+print('i came here age appended')
 
 if fever == 'fever':
 	data_entered.append(1)
@@ -138,6 +174,7 @@ if fever == 'high':
 else:
 	data_entered.append(0)
 
+print('i came here print data entered')
 print(data_entered)
 
 print ( 'name :' ,name,
@@ -165,6 +202,8 @@ print ( 'name :' ,name,
 		'\n[fever columns : 98.6,102]'
 	)
 
+print('till here')
+
 from keras.models import load_model
 model = load_model('updatemodel99-01.h5')
 m = model.predict([[data_entered]])
@@ -183,3 +222,10 @@ elif m == 1:
 	print('medium risk')
 else:
 	print('high risk')
+
+
+print('''	</body>
+	</html>''')
+
+
+
