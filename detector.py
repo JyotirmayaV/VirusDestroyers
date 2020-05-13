@@ -1,10 +1,13 @@
-#!/root/anaconda3/lib/python3.8
+#!/usr/bin/env python3.8
 
-import subprocess as sb
+
 print ("Content-type:text/html\r\n\r\n")
 
 # Import modules for CGI handling 
 import cgi, cgitb 
+cgitb.enable()
+
+import subprocess as sb
 
 # Create instance of FieldStorage 
 form = cgi.FieldStorage() 
@@ -14,17 +17,21 @@ form = cgi.FieldStorage()
 print('''<html>
 	<head>
 		<title>Detection Results</title>
-	</head>
-	<body>''')
-print('i came here')
+		
+	<body>
+	<center><h1>YOUR COVID DETECTION RESULT</h1>
+	[ Team Members : Arpit Pathak , Hemant Gangwar , Yashi Agarwal , Akansh Agarwal , Akshay Maheshwari , Prabal , Rahul Rastogi , Ashutosh Tiwari and Jyotirmaya ]
+	</center>
+            <pre><center>''')
+#print('i came here')
 
 
 
 name = form.getvalue('name')
 email = form.getvalue('email')
-print('here')
+#print('here')
 age = str(form.getvalue('age'))      #numeric age
-print('age : ',age)
+#print('age : ',age)
 if age == 'None':
     age = 10
 else:
@@ -36,7 +43,7 @@ if gender == 'None':
 else:
     gender = int(gender)
 
-print('i came here basic details')
+#print('i came here basic details')
 data_entered = []
 
 fever = form.getvalue('fever')     #string : normal , fever , high
@@ -95,7 +102,7 @@ if progressed == 'None':
 else :
     progressed = int(progressed)
 
-print('i came here symptoms')
+#print('i came here symptoms')
 
 if form.getvalue('kidney_disease') :
 	kidney_disease = 1
@@ -134,7 +141,7 @@ if travel_history == 'None':
 else :
     travel_history = int(travel_history)
 
-print('i came here read data begin')
+#print('i came here read data begin')
 
 data_entered.append(gender)
 data_entered.append(dry_cough)
@@ -154,7 +161,7 @@ data_entered.append(kidney_disease)
 data_entered.append(appetide_change)
 data_entered.append(loss_sense_smell)
 
-print('i came here read data end')
+#print('i came here read data end')
 
 for i in range(10,100,10):
 	if age >= i and age < i+10:
@@ -162,7 +169,7 @@ for i in range(10,100,10):
 	else :
 		data_entered.append(0)
 
-print('i came here age appended')
+#print('i came here age appended')
 
 if fever == 'fever':
 	data_entered.append(1)
@@ -174,8 +181,8 @@ if fever == 'high':
 else:
 	data_entered.append(0)
 
-print('i came here print data entered')
-print(data_entered)
+print('<hr><hr>')
+print('<h3>The Data you filled</h3>')
 
 print ( 'name :' ,name,
 		'\nemail :',email,
@@ -201,31 +208,35 @@ print ( 'name :' ,name,
 		'\n[age columns : 10,20,30,40,50,60,70,80,90]',
 		'\n[fever columns : 98.6,102]'
 	)
-
-print('till here')
-
+print('<hr>')
+print('<h3>The data we generated from your input</h3>')
+print(data_entered)
+print('<hr>')
+print('Note : The above data is being displayed only because its a protype and we want to show what data of user we have received and how we have converted into the machine understandable form.\nThe above shall not be a part of the real working website.')
+print('<hr><hr>')
 from keras.models import load_model
 model = load_model('updatemodel99-01.h5')
 m = model.predict([[data_entered]])
-
-print('model predicted this : ',m)
 
 m = list(m[0]) #converted from a 2D array with one row only to a 1D list 
 
 m = m.index(max(m)) #finding the index of the maximum value predicted
 
-print('Class : ',m)
+#print('Class : ',m)
+
+print('<h3>Your Result is</h3>',end='')
 
 if m == 0 :
-	print('No Risk')
+	print("<h2>No Risk</h2>")
 elif m == 1:
-	print('medium risk')
+	print('<h2>Medium Risk</h2>')
 else:
-	print('high risk')
+	print('<h2>High Risk</h2>')
 
 
-print('''	</body>
-	</html>''')
+print(''' </center></pre>
+                </body>
+	            </html>''')
 
 
 
