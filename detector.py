@@ -17,12 +17,30 @@ form = cgi.FieldStorage()
 print('''<html>
 	<head>
 		<title>Detection Results</title>
+				<style>
+		.button {
+		  background-color: #4CAF50; /* Green */
+		  border: none;
+		  color: white;
+		  padding: 15px 32px;
+		  text-align: center;
+		  text-decoration: none;
+		  
+		  font-size: 16px;
+		  margin: 4px 2px;
+		  cursor: pointer;
+		}
+
+		.button2 {background-color: #ffa500;} /* Orange */
+		.button3 {background-color: #f44336;} /* Red */ 
+		
+		</style>
 		
 	<body>
 	<center><h1>YOUR COVID DETECTION RESULT</h1>
 	[ Team Members : Arpit Pathak , Hemant Gangwar , Yashi Agarwal , Akansh Agarwal , Akshay Maheshwari , Prabal , Rahul Rastogi , Ashutosh Tiwari and Jyotirmaya ]
 	</center>
-            <pre><center>''')
+           <center> <pre>''')
 #print('i came here')
 
 
@@ -143,23 +161,42 @@ else :
 
 #print('i came here read data begin')
 
+data = '\nname : ' + name + ' email : ' + email + ' data received : [' 
+
 data_entered.append(gender)
+data = data + '  ' + str(gender)
 data_entered.append(dry_cough)
+data = data + ' , ' + ' , ' +str(dry_cough)
 data_entered.append(sore_throat)
+data = data + ' , ' + ' , ' + str(sore_throat)
 data_entered.append(weakness)
+data = data + ' , ' + str(weakness)
 data_entered.append(breathing_problems)
+data = data + ' , ' + str(breathing_problems)
 data_entered.append(drowsiness)
+data = data + ' , ' + str(drowsiness)
 data_entered.append(chest_pain)
+data = data + ' , ' + str(chest_pain)
 data_entered.append(travel_history)
+data = data + ' , ' + str(travel_history)
 data_entered.append(diabetes)
+data = data + ' , ' + str(diabetes)
 data_entered.append(heart_disease)
+data = data + ' , ' + str(heart_disease)
 data_entered.append(lung_disease)
+data = data + ' , ' + str(lung_disease)
 data_entered.append(stroke)
+data = data + ' , ' + str(stroke)
 data_entered.append(progressed)
+data = data + ' , ' + str(progressed)
 data_entered.append(high_blood_pressure)
+data = data + ' , ' + str(high_blood_pressure)
 data_entered.append(kidney_disease)
+data = data + ' , ' + str(kidney_disease)
 data_entered.append(appetide_change)
+data = data + ' , ' + str(appetide_change)
 data_entered.append(loss_sense_smell)
+data = data + ' , ' + str(loss_sense_smell)
 
 #print('i came here read data end')
 
@@ -168,6 +205,7 @@ for i in range(10,100,10):
 		data_entered.append(1)
 	else :
 		data_entered.append(0)
+data = data + ' , ' + str(age)
 
 #print('i came here age appended')
 
@@ -180,6 +218,8 @@ if fever == 'high':
 	data_entered.append(1)
 else:
 	data_entered.append(0)
+
+data = data + ' , ' + fever
 
 print('<hr><hr>')
 print('<h3>The Data you filled</h3>')
@@ -201,7 +241,7 @@ print ( 'name :' ,name,
 		'\nprogressed :',progressed,
 		'\nhigh_blood_pressure :',high_blood_pressure,
 		'\nkidney_disease :',kidney_disease,
-		'\nappetide_change :',appetide_change,
+		'\nappetite_change :',appetide_change,
 		'\nloss_sense_smell :',loss_sense_smell,
 		'\nage :',age,
 		'\nfever :',fever,
@@ -212,7 +252,7 @@ print('<hr>')
 print('<h3>The data we generated from your input</h3>')
 print(data_entered)
 print('<hr>')
-print('Note : The above data is being displayed only because its a protype and we want to show what data of user we have received and how we have converted into the machine understandable form.\nThe above shall not be a part of the real working website.')
+print('Note : The above data is being displayed only because its a protoype and we want to show what data of user we have received and how we have converted into the machine understandable form.\nThe above shall not be a part of the real working website.')
 print('<hr><hr>')
 from keras.models import load_model
 model = load_model('updatemodel99-01.h5')
@@ -234,9 +274,25 @@ else:
 	print('<h2>High Risk</h2>')
 
 
-print(''' </center></pre>
+sb.getoutput('sudo python3 Corona\\ Hotspot.py')
+
+print('<hr><h3>We care for your safety and therfore would like to show you the different zones in your area.Click on below buttons to see them.</h3>')
+
+print ('''	
+			</pre>
+			<button type = 'button' class = 'button '><a href = '/green_map.html'> Green Zone </a></button>
+			<button type = 'button' class = 'button button2'><a href = '/orange_map.html'> Orange Zone </a></button>
+			<button type = /button' class = 'button button3'><a href = '/red_map.html'> Red Zone </a></button></center><hr>
+	''')
+
+print(''' 
                 </body>
 	            </html>''')
 
+file1 = open("myfile.txt","a") 
 
+data = data + ' ] ' + ' output : ' + str(m) 
 
+file1.write(data)
+
+file1.close()
