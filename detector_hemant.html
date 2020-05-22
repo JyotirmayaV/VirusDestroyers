@@ -1,0 +1,127 @@
+<html>
+	<head>
+		<title>COVID-19 Detector</title>
+
+		<meta charset="utf-8">
+  		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<!-- CSS only -->
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+	
+		<style> 
+
+
+input{
+	
+
+	margin:20px;
+	 }
+	 	
+body{
+		background-color:#1d0033;
+	}
+
+		</style>
+
+	</head>
+
+	<body class="container-fluid p-3 my-3 text-white" >
+		<center class="bg-danger"><h2><img src="https://img.icons8.com/nolan/64/coronavirus.png"/>
+<span class="text-monospace ">Corona Detector from Team VirusDestroyers</span></h2></center>
+		 
+		<form action='cgi-bin/detector.py' target='blank' class="text-monospace form-group">
+		
+		
+		<div align='center' class = 'personal_details bg-primary container-fluid'>
+				<hr>
+			
+				<h4>Personal Details</h4>
+			
+				Name &nbsp;: <input type = 'text' placeholder="Enter name :" name = 'name' required><br>
+				Email : <input type = 'Email' placeholder="Enter email : " name = 'email' required><br>
+				Age &nbsp;&nbsp;: <input type = 'number' placeholder="Enter age : " name = 'age' required> 
+				
+				<br>
+			
+				Gender &nbsp;&nbsp;: 
+			
+				<input type = 'radio' name = 'gender' value = '0' checked> Male
+				<input type = 'radio' name = 'gender' value = '1' > Female
+				<hr>
+		</div>
+
+		<div align = 'center' class = 'fever_details bg-success container-fluid'><br>
+			
+			<h4>Body Temperature</h4>
+			
+			<input type = 'radio' name = 'fever' value = 'Normal' checked> Normal (96°F-98.6°F)
+			<input type = 'radio' name = 'fever' value = 'fever' > Fever (98.6°F-102°F)
+			<input type = 'radio' name = 'fever' value = 'high'> High Fever (>102°F)
+			<hr>	
+		</div>
+ 
+
+		<div align='center' class = 'major_symptoms bg-primary container-fluid'><br>
+			
+			<h4>Major Symptoms</h4><br>
+			
+			Please select all the symptoms that you are experiencing<br>
+			
+			<input type = "checkbox" name = "weakness" value = "off" /> Weakness
+			<input type = "checkbox" name = "dry_cough" value = "off" /> Dry Cough
+			<input type = "checkbox" name = "sore_throat" value = "off" /> Sore Throat
+			<input type = "checkbox" name = "drowsiness" value = "off" /> Drowsiness
+			<input type = "checkbox" name = "breathing_problem" value = "off" /> Breathing Problems
+			<input type = "checkbox" name = "chest_pain" value = "off" /> Pain in chest<br>
+			<input type = "checkbox" name = "loss_sense_smell" value = "off" />	Loss of sense of smell
+			<input type = "checkbox" name = "appetide_change" value = "off" /> Change in Appetide
+
+			<br>
+			
+			Have your symptoms progressed in the recent days ?? 
+			<center>
+			<input type = 'radio' name = 'progressed' value = '1' > Yes
+			<input type = 'radio' name = 'progressed' value = '0' checked> No</center>
+			<hr>
+		
+		</div>
+
+		<div align = 'center' class = 'major_diseases bg-success container-fluid'><br>
+			
+			<h4>Major Diseases</h4><br>
+			
+			PLease selct all the diseases which you have been suffering from<br><br>
+			
+			<input type = "checkbox" name = "kidney_disease" value = "off" /> Kidney Disease
+			<input type = "checkbox" name = "heart_disease" value = "off" /> Heart Disease
+			<input type = "checkbox" name = "lung disease" value = "off" /> Lung Disease
+			<input type = "checkbox" name = "diabetes" value = "off" /> Diabetes
+			<input type = "checkbox" name = "hig_blood_presssure" value = "off" /> High Blood Pressure
+			<input type = "checkbox" name = "stoke" value = "off" /> Stroke or reduced Immunity	
+
+			<hr>
+
+		</div>
+
+		<div align = 'center' class = 'final_questions bg-primary container-fluid'><br>
+
+			<h4>Final Question</h4>
+
+			Do you have any travel history to the infected countries ???
+			<center><input type = 'radio' name = 'travel_history' value = '1' > Yes
+			<input type = 'radio' name = 'travel_history' value = '0' checked> No</center>
+
+			<hr>
+
+		</div>
+
+		<div align="center" class="container-fluid view overlay">
+		<button type = 'submit' class="btn btn-block btn-lg btn-danger rgba-blue-strong"><marquee behavior="alternate" scrollamount="10">Click Here To Detect Corona !</marquee>
+		</button>
+		<div>
+
+	</form>		
+
+	</body>
+
+</html>
